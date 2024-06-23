@@ -29,7 +29,7 @@ jobs:
      run:
        shell: bash
        # We keep Terraform files in the terraform directory.
-       working-directory: ./terraform
+       #working-directory: ./terraform
  
    steps:
      - name: Checkout the repository to the runner
@@ -62,7 +62,8 @@ jobs:
      - uses: actions/github-script@v6
        if: github.event_name == 'pull_request'
        env:
-         PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
+         #PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
+         PLAN: "${{ steps.plan.outputs.stdout }}"
        with:
          script: |
            const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
